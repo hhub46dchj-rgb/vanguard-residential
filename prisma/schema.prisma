@@ -1,0 +1,138 @@
+// Prisma schema — Vanguard Residential Acquisitions
+// Dev: SQLite (file:./dev.db) · Prod: swap DATABASE_URL to Postgres on northonline.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// ── NextAuth required models (credentials provider uses User only,
+//    but adapter models are kept for future OAuth/social login) ──
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String    @unique
+  passwordHash  String?
+  role          String    @default("admin")
+  emailVerified DateTime?
+  image         String?
+  accounts      Account[]
+  sessions      Session[]
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+// ── Lead pipeline ─────────────────────────────────────────────
+// A single LeadStatus enum drives status badges across all tables.
+// (SQLite has no native enum; Prisma stores it as TEXT with the
+//  values constrained at the application layer.)
+
+model SellerLead {
+  id              String   @id @default(cuid())
+  status          String   @default("new") // new | contacted | closed
+  // Contact
+  ownerName       String
+  phone           String
+  email           String
+  // Property
+  address         String
+  city            String
+  state           String
+  zip             String
+  // Financials
+  askingPrice     Int?
+  // Profile
+  yearBuilt       Int?
+  squareFootage   Int?
+  bedrooms        Int?
+  bathrooms       Float?
+  propertyType    String?  // Single Family | Multi-Family | Condo | Vacant Land
+  occupancyStatus String?  // Owner Occupied | Tenant Occupied | Vacant
+  roofAge         String?  // Good | Needs Repair | Replace
+  hvacCondition   String?  // Good | Needs Repair | Replace
+  repairNotes     String?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([status])
+  @@index([createdAt])
+}
+
+model InvestorLead {
+  id              String   @id @default(cuid())
+  status          String   @default("new")
+  // Contact
+  contactName     String
+  phone           String
+  email           String
+  // Business
+  companyName     String?
+  // Buying criteria
+  targetAreas     String?
+  maxBudget       Int?
+  strategy        String?  // Fix & Flip | Buy & Hold | Land Development
+  preferredTypes  String?
+  proofOfFunds    Boolean  @default(false)
+  notes           String?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([status])
+  @@index([createdAt])
+}
+
+model PartnerLead {
+  id              String   @id @default(cuid())
+  status          String   @default("new")
+  assistanceType  String   // acquisitions | dispositions
+  // Business / contact
+  companyName     String?
+  contactName     String
+  phone           String
+  email           String
+  // Context (meaning depends on assistanceType)
+  contextDetails  String
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([status])
+  @@index([createdAt])
+}
