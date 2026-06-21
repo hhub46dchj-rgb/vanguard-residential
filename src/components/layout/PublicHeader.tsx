@@ -20,9 +20,7 @@ export function PublicHeader() {
           <Button asChild variant="ghost" size="sm" className="hidden sm:inline-flex text-gray-300 hover:text-white hover:bg-gray-800">
             <Link href="/partners">Partners</Link>
           </Button>
-          <Button asChild variant="outline" size="sm" className="bg-emerald-600 hover:bg-emerald-700 text-white border-emerald-600">
-            <Link href="/admin/login">Operator Login</Link>
-          </Button>
+
         </nav>
       </div>
     </header>

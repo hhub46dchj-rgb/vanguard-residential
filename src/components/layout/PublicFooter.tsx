@@ -37,18 +37,7 @@ export function PublicFooter() {
             </ul>
           </div>
 
-          <div className="space-y-3">
-            <h4 className="text-sm font-semibold uppercase tracking-wider text-navy-100">
-              Company
-            </h4>
-            <ul className="space-y-2 text-sm">
-              <li>
-                <Link href="/admin/login" className="transition-colors hover:text-emerald-300">
-                  Operator Login
-                </Link>
-              </li>
-            </ul>
-          </div>
+
         </div>
 
         <div className="mt-10 border-t border-navy-800 pt-6 text-xs text-navy-400">

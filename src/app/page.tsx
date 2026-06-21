@@ -22,9 +22,6 @@ export default function HomePage() {
 
         <div className="relative z-10 mx-auto max-w-6xl px-4 py-24 sm:px-6 sm:py-36 lg:py-44">
           <div className="max-w-3xl">
-            <span className="inline-flex items-center rounded-full border border-emerald-500/60 bg-emerald-500/30 px-5 py-2.5 text-sm font-bold uppercase tracking-[0.16em] text-emerald-300 shadow-xl backdrop-blur-sm">
-              ✨ Real Estate Acquisitions
-            </span>
             <h1 className="mt-10 text-6xl font-bold leading-[1.1] tracking-tight sm:text-7xl lg:text-8xl">
               Transforming Property Potential into{" "}
               <span className="bg-gradient-to-r from-emerald-400 to-emerald-300 bg-clip-text text-transparent">Shared Success.</span>
