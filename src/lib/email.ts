@@ -1,3 +1,5 @@
+import nodemailer from "nodemailer";
+
 export interface LeadEmail {
   type: string;
   subject: string;
@@ -36,35 +38,38 @@ function escapeHtml(s: string): string {
 }
 
 export async function sendLeadEmail(email: LeadEmail): Promise<{ delivered: boolean; skipped: boolean }> {
-  const apiKey = process.env.WEB3FORMS_KEY;
   const to = process.env.LEADS_INBOX;
+  const smtpHost = process.env.SMTP_HOST;
+  const smtpUser = process.env.SMTP_USER;
+  const smtpPass = process.env.SMTP_PASS;
 
-  if (!apiKey) {
+  if (!smtpHost || !smtpUser || !smtpPass) {
     console.log("\n──────────────────────────────────────────────");
-    console.log(`📧 [EMAIL SKIPPED — Web3Forms not configured] ${email.type}`);
+    console.log(`📧 [EMAIL SKIPPED — SMTP not configured] ${email.type}`);
     console.log(`   To: ${to}  ·  Subject: ${email.subject}`);
     console.table(email.rows.filter((r) => r.value?.trim()));
     console.log("──────────────────────────────────────────────\n");
     return { delivered: false, skipped: true };
   }
 
-  const res = await fetch("https://api.web3forms.com/submit", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      access_key: apiKey,
-      subject: email.subject,
-      from_name: "Vanguard Residential Acquisitions",
-      to: to,
-      html: renderHtml(email),
-    }),
+  const transporter = nodemailer.createTransport({
+    host: smtpHost,
+    port: Number(process.env.SMTP_PORT ?? 465),
+    secure: Number(process.env.SMTP_PORT ?? 465) === 465,
+    auth: {
+      user: smtpUser,
+      pass: smtpPass,
+    },
   });
 
-  const data = await res.json();
-  if (!data.success) {
-    console.error("Web3Forms error:", data);
-    return { delivered: false, skipped: false };
-  }
+  const from = process.env.SMTP_FROM ?? smtpUser;
+
+  await transporter.sendMail({
+    from,
+    to,
+    subject: email.subject,
+    html: renderHtml(email),
+  });
 
   return { delivered: true, skipped: false };
 }
