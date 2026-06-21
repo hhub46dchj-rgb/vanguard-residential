@@ -8,7 +8,7 @@ export default function InvestorsPage() {
   return (
     <FormShell
       badge="Investor Portal"
-      title="Join the Buyer List"
+      title="Join the Investor Network"
       subtitle="Get matched with off-market deals that fit your exact criteria. Tell us what you buy and how — we'll send deals your way."
       icon={Wallet}
       introPoints={[

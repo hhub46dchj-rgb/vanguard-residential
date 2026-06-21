@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ArrowRight, type LucideIcon } from "lucide-react";
+import Image from "next/image";
 import { cn } from "@/lib/cn";
 
 interface PortalCardProps {
@@ -12,6 +13,8 @@ interface PortalCardProps {
   cta: string;
   /** Optional tailwind gradient for the icon chip. */
   iconClassName?: string;
+  /** Optional image for the portal */
+  image?: string;
 }
 
 export function PortalCard({
@@ -23,6 +26,7 @@ export function PortalCard({
   bullets,
   cta,
   iconClassName,
+  image,
 }: PortalCardProps) {
   return (
     <Link
@@ -34,19 +38,31 @@ export function PortalCard({
         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2",
       )}
     >
-      <span
-        className={cn(
-          "inline-flex h-12 w-12 items-center justify-center rounded-xl bg-navy-800 text-white transition-colors group-hover:bg-emerald-500",
-          iconClassName,
+      <div className="relative mb-4 h-20 w-20 overflow-hidden rounded-xl bg-navy-50">
+        {image ? (
+          <Image
+            src={image}
+            alt={`${title} portal icon`}
+            fill
+            className="object-cover transition-transform group-hover:scale-105"
+            sizes="80px"
+          />
+        ) : (
+          <span
+            className={cn(
+              "inline-flex h-full w-full items-center justify-center rounded-xl bg-navy-800 text-white transition-colors group-hover:bg-emerald-500",
+              iconClassName,
+            )}
+          >
+            <Icon className="h-8 w-8" />
+          </span>
         )}
-      >
-        <Icon className="h-6 w-6" />
-      </span>
+      </div>
 
-      <p className="mt-5 text-xs font-semibold uppercase tracking-[0.16em] text-emerald-600">
+      <p className="mt-1 text-xs font-semibold uppercase tracking-[0.16em] text-emerald-600">
         {audience}
       </p>
-      <h3 className="mt-1 text-xl font-bold text-navy-900">{title}</h3>
+      <h3 className="mt-2 text-xl font-bold text-navy-900">{title}</h3>
       <p className="mt-2 text-sm leading-relaxed text-slate-600">{description}</p>
 
       <ul className="mt-4 space-y-2">

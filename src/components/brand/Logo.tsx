@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { cn } from "@/lib/cn";
 
 /**
@@ -47,7 +48,7 @@ export function Monogram({ className }: { className?: string }) {
 interface LogoProps {
   /** Light text for use on dark/navy backgrounds. */
   variant?: "dark" | "light";
-  href?: string;
+  href?: string | null;
   className?: string;
   showWordmark?: boolean;
 }
@@ -63,9 +64,15 @@ export function Logo({
 
   const content = (
     <span className={cn("flex items-center gap-2.5", className)}>
-      <span className="text-emerald-500">
-        <Monogram />
-      </span>
+      <div className="relative h-9 w-9 shrink-0 overflow-hidden rounded-lg bg-navy-50">
+        <Image
+          src="/photos/logo.jpg"
+          alt="Vanguard Residential Acquisitions logo"
+          fill
+          className="object-cover"
+          sizes="36px"
+        />
+      </div>
       {showWordmark && (
         <span className="flex flex-col leading-none">
           <span className={cn("text-base font-bold tracking-tight sm:text-lg", accent)}>

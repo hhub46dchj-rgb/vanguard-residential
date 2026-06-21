@@ -85,7 +85,7 @@ export async function submitInvestorLead(
   }
 
   await sendLeadEmail({
-    type: "New Investor (Buyer)",
+    type: "New Investor Lead",
     subject: `💼 Investor Lead: ${d.contactName}${d.companyName ? ` — ${d.companyName}` : ""}`,
     rows: [
       { label: "Contact", value: d.contactName },

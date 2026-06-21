@@ -12,18 +12,14 @@ const base =
   "transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-500/40 focus:border-emerald-500 " +
   "disabled:bg-slate-50 disabled:text-slate-400 aria-[invalid=true]:border-red-400 aria-[invalid=true]:focus:ring-red-400/30";
 
-export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {}
-
-export const Input = forwardRef<HTMLInputElement, InputProps>(
+export const Input = forwardRef<HTMLInputElement, InputHTMLAttributes<HTMLInputElement>>(
   ({ className, ...props }, ref) => (
     <input ref={ref} className={cn(base, "h-11", className)} {...props} />
   ),
 );
 Input.displayName = "Input";
 
-export interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {}
-
-export const Select = forwardRef<HTMLSelectElement, SelectProps>(
+export const Select = forwardRef<HTMLSelectElement, SelectHTMLAttributes<HTMLSelectElement>>(
   ({ className, children, ...props }, ref) => (
     <select
       ref={ref}
@@ -41,9 +37,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
 );
 Select.displayName = "Select";
 
-export interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {}
-
-export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
+export const Textarea = forwardRef<HTMLTextAreaElement, TextareaHTMLAttributes<HTMLTextAreaElement>>(
   ({ className, ...props }, ref) => (
     <textarea
       ref={ref}

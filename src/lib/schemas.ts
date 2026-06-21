@@ -78,8 +78,8 @@ export const investorSchema = z.object({
     .optional(),
   strategy: z.enum(["Fix & Flip", "Buy & Hold", "Land Development"]).optional(),
   preferredTypes: z.string().max(300).optional().or(z.literal("")),
-  proofOfFunds: z.literal(true, {
-    errorMap: () => ({ message: "Please confirm your proof of funds to continue" }),
+  proofOfFunds: z.boolean().refine((v) => v === true, {
+    message: "Please confirm your proof of funds to continue",
   }),
   notes: z.string().max(2000).optional().or(z.literal("")),
 });

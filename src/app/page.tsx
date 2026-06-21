@@ -52,6 +52,7 @@ export default function HomePage() {
               "Close on your timeline",
             ]}
             cta="Submit your property"
+            image="/photos/seller.jpg"
           />
           <PortalCard
             href="/investors"
@@ -65,6 +66,7 @@ export default function HomePage() {
               "Proof of funds verified buyers",
             ]}
             cta="Join the buyer list"
+            image="/photos/investors.jpg"
           />
           <PortalCard
             href="/partners"
@@ -78,6 +80,7 @@ export default function HomePage() {
               "Mutually profitable JV terms",
             ]}
             cta="Open a partnership"
+            image="/photos/JV.jpg"
           />
         </div>
       </section>
