@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import { Toaster } from "sonner";
 import { ThemeProvider } from "next-themes";
 import "./globals.css";
+import { PublicHeader } from "@/components/layout/PublicHeader";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -27,18 +28,32 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col bg-white text-navy-900 dark:bg-black dark:text-gray-100">
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
-          {children}
-          <Toaster
-            position="top-center"
-            toastOptions={{
-              classNames: {
-                toast: "rounded-xl border-border font-sans",
-              },
-            }}
-            richColors
+        {/* Background video */}
+        <div className="relative min-h-screen">
+          <video
+            className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+            src="/background.mp4"
+            autoPlay
+            muted
+            loop
+            playsInline
           />
-        </ThemeProvider>
+          <div className="relative z-10 flex flex-col min-h-screen">
+            <PublicHeader />
+            <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
+              {children}
+              <Toaster
+                position="top-center"
+                toastOptions={{
+                  classNames: {
+                    toast: "rounded-xl border-border font-sans",
+                  },
+                }}
+                richColors
+              />
+            </ThemeProvider>
+          </div>
+        </div>
       </body>
     </html>
   );
