@@ -15,7 +15,12 @@ export const metadata: Metadata = {
   description:
     "Transforming Property Potential into Shared Success. Real estate acquisitions for sellers, investors, and joint-venture partners.",
   icons: {
-    icon: "/photos/logo.jpg",
+    icon: [
+      { url: "/favicon-16.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon-32.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon.ico", sizes: "48x48" },
+    ],
+    apple: "/apple-touch-icon.png",
   },
   openGraph: {
     title: "Vanguard Residential Acquisitions",
