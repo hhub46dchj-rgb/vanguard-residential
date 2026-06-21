@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Toaster } from "sonner";
+import { ThemeProvider } from "next-themes";
 import "./globals.css";
 
 const inter = Inter({
@@ -24,17 +25,19 @@ export default function RootLayout({
       lang="en"
       className={`${inter.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-white text-navy-900">
-        {children}
-        <Toaster
-          position="top-center"
-          toastOptions={{
-            classNames: {
-              toast: "rounded-xl border-border font-sans",
-            },
-          }}
-          richColors
-        />
+      <body className="min-h-full flex flex-col bg-white text-navy-900 dark:bg-black dark:text-gray-100">
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
+          {children}
+          <Toaster
+            position="top-center"
+            toastOptions={{
+              classNames: {
+                toast: "rounded-xl border-border font-sans",
+              },
+            }}
+            richColors
+          />
+        </ThemeProvider>
       </body>
     </html>
   );

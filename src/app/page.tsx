@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Home, Wallet, Handshake } from "lucide-react";
 import { PublicHeader } from "@/components/layout/PublicHeader";
 import { PublicFooter } from "@/components/layout/PublicFooter";
@@ -38,6 +39,67 @@ export default function HomePage() {
             <p className="mt-12 text-lg text-gray-400">
               Choose the portal that fits you below to get started.
             </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Three Images Section */}
+      <section className="relative bg-black py-20 sm:py-32">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {/* Seller Image */}
+            <div className="relative group">
+              <div className="relative h-80 w-full overflow-hidden rounded-3xl shadow-2xl">
+                <Image
+                  src="/photos/seller.jpg"
+                  alt="Seller property"
+                  fill
+                  className="object-cover transition-all duration-700 group-hover:scale-105 group-hover:shadow-3xl"
+                  priority
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+              </div>
+              <div className="mt-6">
+                <h3 className="text-2xl font-bold text-white mb-2">Sellers</h3>
+                <p className="text-gray-300 text-lg">Homeowners looking to sell their properties fast and as-is</p>
+              </div>
+            </div>
+
+            {/* Investors Image */}
+            <div className="relative group">
+              <div className="relative h-80 w-full overflow-hidden rounded-3xl shadow-2xl">
+                <Image
+                  src="/photos/investors.jpg"
+                  alt="Investor portfolio"
+                  fill
+                  className="object-cover transition-all duration-700 group-hover:scale-105 group-hover:shadow-3xl"
+                  priority
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+              </div>
+              <div className="mt-6">
+                <h3 className="text-2xl font-bold text-white mb-2">Investors</h3>
+                <p className="text-gray-300 text-lg">Cash buyers and institutional investors seeking profitable opportunities</p>
+              </div>
+            </div>
+
+            {/* Partners Image */}
+            <div className="relative group">
+              <div className="relative h-80 w-full overflow-hidden rounded-3xl shadow-2xl">
+                <Image
+                  src="/photos/JV.jpg"
+                  alt="Joint venture partners"
+                  fill
+                  className="object-cover transition-all duration-700 group-hover:scale-105 group-hover:shadow-3xl"
+                  priority
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+              </div>
+              <div className="mt-6">
+                <h3 className="text-2xl font-bold text-white mb-2">Partners</h3>
+                <p className="text-gray-300 text-lg">Co-wholesalers and companies seeking joint venture opportunities</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
