@@ -32,51 +32,52 @@ export function PortalCard({
     <Link
       href={href}
       className={cn(
-        "group relative flex flex-col overflow-hidden rounded-2xl border border-navy-100 bg-white p-6 sm:p-7",
-        "shadow-card transition-all duration-300",
-        "hover:-translate-y-1 hover:border-emerald-300 hover:shadow-glow",
+        "group relative flex flex-col overflow-hidden rounded-3xl border border-navy-100 bg-white p-8 sm:p-10",
+        "shadow-card-xl transition-all duration-500",
+        "hover:-translate-y-3 hover:border-emerald-300 hover:shadow-2xl",
         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2",
       )}
     >
-      <div className="relative mb-4 h-20 w-20 overflow-hidden rounded-xl bg-navy-50">
+      <div className="relative mb-8 h-36 w-36 overflow-hidden rounded-2xl bg-gradient-to-br from-navy-50 to-navy-100 shadow-xl">
         {image ? (
           <Image
             src={image}
             alt={`${title} portal icon`}
             fill
-            className="object-cover transition-transform group-hover:scale-105"
-            sizes="80px"
+            className="object-cover transition-all duration-500 group-hover:scale-110 group-hover:shadow-2xl"
+            sizes="144px"
+            priority
           />
         ) : (
           <span
             className={cn(
-              "inline-flex h-full w-full items-center justify-center rounded-xl bg-navy-800 text-white transition-colors group-hover:bg-emerald-500",
+              "inline-flex h-full w-full items-center justify-center rounded-2xl bg-gradient-to-br from-navy-800 to-navy-900 text-white transition-all duration-500 group-hover:from-emerald-500 group-hover:to-emerald-600 group-hover:scale-110 shadow-lg",
               iconClassName,
             )}
           >
-            <Icon className="h-8 w-8" />
+            <Icon className="h-12 w-12" />
           </span>
         )}
       </div>
 
-      <p className="mt-1 text-xs font-semibold uppercase tracking-[0.16em] text-emerald-600">
+      <p className="mt-2 text-sm font-semibold uppercase tracking-[0.16em] text-emerald-600">
         {audience}
       </p>
-      <h3 className="mt-2 text-xl font-bold text-navy-900">{title}</h3>
-      <p className="mt-2 text-sm leading-relaxed text-slate-600">{description}</p>
+      <h3 className="mt-3 text-2xl font-bold text-navy-900">{title}</h3>
+      <p className="mt-3 text-base leading-relaxed text-slate-700">{description}</p>
 
-      <ul className="mt-4 space-y-2">
+      <ul className="mt-5 space-y-3">
         {bullets.map((b) => (
-          <li key={b} className="flex items-start gap-2 text-sm text-slate-700">
-            <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-500" />
+          <li key={b} className="flex items-start gap-3 text-sm text-slate-800">
+            <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-emerald-500" />
             {b}
           </li>
         ))}
       </ul>
 
-      <span className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-navy-800 transition-colors group-hover:text-emerald-600">
+      <span className="mt-8 inline-flex items-center gap-2 text-base font-semibold text-navy-800 transition-all group-hover:text-emerald-600">
         {cta}
-        <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+        <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-2" />
       </span>
     </Link>
   );

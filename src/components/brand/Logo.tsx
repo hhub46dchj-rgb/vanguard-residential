@@ -63,22 +63,23 @@ export function Logo({
   const sub = variant === "light" ? "text-emerald-300" : "text-emerald-600";
 
   const content = (
-    <span className={cn("flex items-center gap-2.5", className)}>
-      <div className="relative h-9 w-9 shrink-0 overflow-hidden rounded-lg bg-navy-50">
+    <span className={cn("flex items-center gap-5", className)}>
+      <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-3xl bg-gradient-to-br from-navy-50 to-navy-100 shadow-2xl ring-2 ring-navy-200/50 ring-offset-2 ring-offset-white">
         <Image
           src="/photos/logo.jpg"
           alt="Vanguard Residential Acquisitions logo"
           fill
-          className="object-cover"
-          sizes="36px"
+          className="object-cover transition-all duration-700 hover:scale-110 hover:shadow-3xl"
+          sizes="80px"
+          priority
         />
       </div>
       {showWordmark && (
         <span className="flex flex-col leading-none">
-          <span className={cn("text-base font-bold tracking-tight sm:text-lg", accent)}>
+          <span className={cn("text-2xl font-bold tracking-tight sm:text-3xl", accent)}>
             Vanguard Residential
           </span>
-          <span className={cn("text-[11px] font-semibold uppercase tracking-[0.18em]", sub)}>
+          <span className={cn("text-lg font-semibold uppercase tracking-[0.18em]", sub)}>
             Acquisitions
           </span>
         </span>
