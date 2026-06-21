@@ -64,7 +64,7 @@ export function Logo({
 
   const content = (
     <span className={cn("flex items-center gap-5", className)}>
-      <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-2xl bg-black shadow-xl">
+      <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-2xl shadow-xl">
         <Image
           src="/photos/logo.jpg"
           alt="Vanguard Residential Acquisitions logo"

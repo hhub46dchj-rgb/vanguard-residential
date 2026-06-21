@@ -1,14 +1,11 @@
 import Image from "next/image";
 import { Home, Wallet, Handshake } from "lucide-react";
-import { PublicHeader } from "@/components/layout/PublicHeader";
 import { PublicFooter } from "@/components/layout/PublicFooter";
 import { PortalCard } from "@/components/home/PortalCard";
 
 export default function HomePage() {
   return (
     <>
-      <PublicHeader />
-
       {/* Hero */}
       <section className="relative overflow-hidden bg-black text-white">
         {/* Animated background */}

@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { ArrowLeft, type LucideIcon } from "lucide-react";
-import { PublicHeader } from "@/components/layout/PublicHeader";
 import { PublicFooter } from "@/components/layout/PublicFooter";
 
 /** Shared two-column shell for every portal form: intro + form card. */
@@ -21,7 +20,6 @@ export function FormShell({
 }) {
   return (
     <>
-      <PublicHeader />
       <main className="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-14">
         <Link
           href="/"
