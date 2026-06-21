@@ -1,38 +1,9 @@
-import nodemailer from "nodemailer";
-
-/**
- * Outbound email via SMTP (your northonline mailbox).
- *
- * In local dev, SMTP_HOST is intentionally blank: email is skipped and
- * the rendered body is logged to the console so you can verify content
- * before handing over real credentials. Once SMTP_* are set (prod or
- * your local .env), mail flows to LEADS_INBOX automatically.
- */
-
-export function isEmailConfigured(): boolean {
-  return Boolean(process.env.SMTP_HOST && process.env.SMTP_USER && process.env.SMTP_PASS);
-}
-
-async function getTransporter() {
-  return nodemailer.createTransport({
-    host: process.env.SMTP_HOST,
-    port: Number(process.env.SMTP_PORT ?? 465),
-    secure: Number(process.env.SMTP_PORT ?? 465) === 465,
-    auth: {
-      user: process.env.SMTP_USER,
-      pass: process.env.SMTP_PASS,
-    },
-  });
-}
-
 export interface LeadEmail {
-  type: string; // e.g. "New Seller Lead"
+  type: string;
   subject: string;
-  /** Plain key/value rows rendered into the email body. */
   rows: Array<{ label: string; value: string }>;
 }
 
-/** Build a clean, scannable HTML email from labelled rows. */
 function renderHtml({ type, rows }: LeadEmail): string {
   const rowsHtml = rows
     .filter((r) => r.value && r.value.trim() !== "")
@@ -65,25 +36,35 @@ function escapeHtml(s: string): string {
 }
 
 export async function sendLeadEmail(email: LeadEmail): Promise<{ delivered: boolean; skipped: boolean }> {
+  const apiKey = process.env.WEB3FORMS_KEY;
   const to = process.env.LEADS_INBOX;
-  const from = process.env.SMTP_FROM ?? process.env.SMTP_USER ?? "Vanguard Residential Acquisitions";
 
-  // Dev fallback: no SMTP configured → log the rendered email instead.
-  if (!isEmailConfigured()) {
+  if (!apiKey) {
     console.log("\n──────────────────────────────────────────────");
-    console.log(`📧 [EMAIL SKIPPED — SMTP not configured] ${email.type}`);
+    console.log(`📧 [EMAIL SKIPPED — Web3Forms not configured] ${email.type}`);
     console.log(`   To: ${to}  ·  Subject: ${email.subject}`);
     console.table(email.rows.filter((r) => r.value?.trim()));
     console.log("──────────────────────────────────────────────\n");
     return { delivered: false, skipped: true };
   }
 
-  const transporter = await getTransporter();
-  await transporter.sendMail({
-    from,
-    to,
-    subject: email.subject,
-    html: renderHtml(email),
+  const res = await fetch("https://api.web3forms.com/submit", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      access_key: apiKey,
+      subject: email.subject,
+      from_name: "Vanguard Residential Acquisitions",
+      to: to,
+      html: renderHtml(email),
+    }),
   });
+
+  const data = await res.json();
+  if (!data.success) {
+    console.error("Web3Forms error:", data);
+    return { delivered: false, skipped: false };
+  }
+
   return { delivered: true, skipped: false };
 }
