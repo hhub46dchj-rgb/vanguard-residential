@@ -14,6 +14,14 @@ export const metadata: Metadata = {
   title: "Vanguard Residential Acquisitions",
   description:
     "Transforming Property Potential into Shared Success. Real estate acquisitions for sellers, investors, and joint-venture partners.",
+  openGraph: {
+    title: "Vanguard Residential Acquisitions",
+    description:
+      "Transforming Property Potential into Shared Success. Real estate acquisitions for sellers, investors, and joint-venture partners.",
+    url: "https://vanguardresidentialacquisitions.com",
+    siteName: "Vanguard Residential Acquisitions",
+    type: "website",
+  },
 };
 
 export default function RootLayout({
