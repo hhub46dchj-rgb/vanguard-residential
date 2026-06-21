@@ -64,12 +64,12 @@ export function Logo({
 
   const content = (
     <span className={cn("flex items-center gap-5", className)}>
-      <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-3xl bg-gradient-to-br from-navy-50 to-navy-100 shadow-2xl ring-2 ring-navy-200/50 ring-offset-2 ring-offset-white">
+      <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-2xl bg-white p-2 shadow-xl ring-2 ring-gray-200 ring-offset-2 ring-offset-black">
         <Image
           src="/photos/logo.jpg"
           alt="Vanguard Residential Acquisitions logo"
           fill
-          className="object-cover transition-all duration-700 hover:scale-110 hover:shadow-3xl"
+          className="object-cover transition-all duration-500 hover:scale-105 hover:shadow-2xl"
           sizes="80px"
           priority
         />

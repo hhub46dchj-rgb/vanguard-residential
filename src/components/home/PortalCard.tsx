@@ -32,13 +32,13 @@ export function PortalCard({
     <Link
       href={href}
       className={cn(
-        "group relative flex flex-col overflow-hidden rounded-3xl border border-navy-100 bg-white p-8 sm:p-10",
+        "group relative flex flex-col overflow-hidden rounded-3xl border border-gray-200 bg-white p-8 sm:p-10",
         "shadow-card-xl transition-all duration-500",
-        "hover:-translate-y-3 hover:border-emerald-300 hover:shadow-2xl",
+        "hover:-translate-y-3 hover:border-emerald-300 hover:shadow-2xl hover:bg-gradient-to-br hover:from-white hover:to-emerald-50/50",
         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2",
       )}
     >
-      <div className="relative mb-8 h-36 w-36 overflow-hidden rounded-2xl bg-gradient-to-br from-navy-50 to-navy-100 shadow-xl">
+      <div className="relative mb-8 h-36 w-36 overflow-hidden rounded-2xl bg-white p-3 shadow-xl ring-1 ring-gray-200">
         {image ? (
           <Image
             src={image}
@@ -75,9 +75,9 @@ export function PortalCard({
         ))}
       </ul>
 
-      <span className="mt-8 inline-flex items-center gap-2 text-base font-semibold text-navy-800 transition-all group-hover:text-emerald-600">
+      <span className="mt-8 inline-flex items-center gap-2 text-base font-semibold text-navy-800 transition-all duration-300 group-hover:text-emerald-600">
         {cta}
-        <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-2" />
+        <ArrowRight className="h-5 w-5 transition-all duration-300 group-hover:translate-x-2 group-hover:scale-110" />
       </span>
     </Link>
   );
