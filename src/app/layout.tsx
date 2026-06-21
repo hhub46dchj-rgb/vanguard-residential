@@ -14,13 +14,31 @@ export const metadata: Metadata = {
   title: "Vanguard Residential Acquisitions",
   description:
     "Transforming Property Potential into Shared Success. Real estate acquisitions for sellers, investors, and joint-venture partners.",
+  icons: {
+    icon: "/photos/logo.jpg",
+  },
   openGraph: {
     title: "Vanguard Residential Acquisitions",
     description:
       "Transforming Property Potential into Shared Success. Real estate acquisitions for sellers, investors, and joint-venture partners.",
     url: "https://vanguardresidentialacquisitions.com",
     siteName: "Vanguard Residential Acquisitions",
+    images: [
+      {
+        url: "https://vanguardresidentialacquisitions.com/og-image.jpg",
+        width: 839,
+        height: 846,
+        alt: "Vanguard Residential Acquisitions",
+      },
+    ],
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Vanguard Residential Acquisitions",
+    description:
+      "Transforming Property Potential into Shared Success. Real estate acquisitions for sellers, investors, and joint-venture partners.",
+    images: ["https://vanguardresidentialacquisitions.com/og-image.jpg"],
   },
 };
 
