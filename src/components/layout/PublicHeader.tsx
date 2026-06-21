@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/Button";
 export function PublicHeader() {
   return (
     <header className="sticky top-0 z-40 border-b border-gray-800 bg-black/95 backdrop-blur-md">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
+      <div className="mx-auto flex min-h-28 max-w-6xl items-center justify-between gap-4 px-4 py-3 sm:px-6">
         <Logo variant="light" />
         <nav className="flex items-center gap-2 sm:gap-4">
           <Button asChild variant="ghost" size="sm" className="hidden sm:inline-flex text-gray-300 hover:text-white hover:bg-gray-800">

@@ -8,18 +8,19 @@ export default function HomePage() {
     <>
       {/* Hero */}
       <section className="relative overflow-hidden bg-black text-white">
-        {/* Animated background */}
-        <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-r from-emerald-900/30 via-transparent to-blue-900/30" />
-          <div className="absolute -left-40 -top-40 h-[600px] w-[600px] rounded-full bg-emerald-500/20 blur-3xl animate-pulse" />
-          <div className="absolute -right-40 bottom-0 h-[500px] w-[500px] rounded-full bg-blue-500/20 blur-3xl animate-pulse" />
-          <div className="absolute left-1/2 top-1/2 h-[400px] w-[400px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-emerald-400/10 blur-3xl animate-pulse" />
-        </div>
+        {/* Video background */}
+        <video
+          className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+          src="/photos/background.mp4"
+          autoPlay
+          muted
+          loop
+          playsInline
+        />
+        {/* Dark overlay for readability */}
+        <div className="absolute inset-0 bg-black/60" aria-hidden />
 
-        {/* Grid pattern overlay */}
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:40px_40px]" />
-
-        <div className="relative mx-auto max-w-6xl px-4 py-24 sm:px-6 sm:py-36 lg:py-44">
+        <div className="relative z-10 mx-auto max-w-6xl px-4 py-24 sm:px-6 sm:py-36 lg:py-44">
           <div className="max-w-3xl">
             <span className="inline-flex items-center rounded-full border border-emerald-500/60 bg-emerald-500/30 px-5 py-2.5 text-sm font-bold uppercase tracking-[0.16em] text-emerald-300 shadow-xl backdrop-blur-sm">
               ✨ Real Estate Acquisitions
