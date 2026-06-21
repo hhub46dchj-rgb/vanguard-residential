@@ -1,3 +1,4 @@
+import React, { useEffect } from "react";
 "use client";
 
 import Link from "next/link";
@@ -34,8 +35,15 @@ export function PublicHeader() {
 function ThemeToggleButton() {
   const [isDark, setIsDark] = useState(() => {
     if (typeof window === 'undefined') return true;
+    const stored = localStorage.getItem('theme');
+    if (stored) return stored === 'dark';
     return document.documentElement.classList.contains('dark');
   });
+
+  // Ensure the HTML tag has the correct class on mount
+  React.useEffect(() => {
+    document.documentElement.classList.toggle('dark', isDark);
+  }, []);
 
   const toggleTheme = () => {
     const newIsDark = !isDark;

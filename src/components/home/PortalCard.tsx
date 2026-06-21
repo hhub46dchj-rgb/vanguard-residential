@@ -38,14 +38,14 @@ export function PortalCard({
         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2",
       )}
     >
-      <div className="relative mb-8 h-36 w-36 overflow-hidden rounded-2xl bg-white p-3 shadow-xl ring-1 ring-gray-200">
+      <div className="relative mb-8 h-48 w-48 overflow-hidden rounded-2xl bg-white p-3 shadow-xl ring-1 ring-gray-200">
         {image ? (
           <Image
             src={image}
             alt={`${title} portal icon`}
             fill
             className="object-cover transition-all duration-500 group-hover:scale-110 group-hover:shadow-2xl"
-            sizes="144px"
+            sizes="192px"
             priority
           />
         ) : (
