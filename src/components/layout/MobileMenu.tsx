@@ -3,7 +3,6 @@
 import { useState, useRef, useCallback, useEffect } from "react";
 import Link from "next/link";
 import { Menu, X, Home, Users, Handshake, Info, HelpCircle } from "lucide-react";
-import { Button } from "@/components/ui/Button";
 
 const NAV_LINKS = [
   { href: "/sellers", label: "Sellers", icon: Home },
@@ -15,41 +14,31 @@ const NAV_LINKS = [
 
 export function MobileMenu() {
   const [open, setOpen] = useState(false);
-  const [touchStart, setTouchStart] = useState<number | null>(null);
-  const [touchCurrent, setTouchCurrent] = useState<number | null>(null);
-  const [isDragging, setIsDragging] = useState(false);
+  const touchStartX = useRef(0);
+  const touchStartY = useRef(0);
   const menuRef = useRef<HTMLDivElement>(null);
-  const overlayRef = useRef<HTMLDivElement>(null);
 
   const closeMenu = useCallback(() => {
     setOpen(false);
-    setTouchStart(null);
-    setTouchCurrent(null);
-    setIsDragging(false);
   }, []);
 
   // Swipe right to close
   const handleTouchStart = useCallback((e: React.TouchEvent) => {
-    setTouchStart(e.touches[0].clientX);
-    setIsDragging(true);
+    touchStartX.current = e.touches[0].clientX;
+    touchStartY.current = e.touches[0].clientY;
   }, []);
 
-  const handleTouchMove = useCallback((e: React.TouchEvent) => {
-    if (touchStart === null) return;
-    setTouchCurrent(e.touches[0].clientX);
-  }, [touchStart]);
+  const handleTouchEnd = useCallback((e: React.TouchEvent) => {
+    const touchEndX = e.changedTouches[0].clientX;
+    const touchEndY = e.changedTouches[0].clientY;
+    const diffX = touchEndX - touchStartX.current;
+    const diffY = Math.abs(touchEndY - touchStartY.current);
 
-  const handleTouchEnd = useCallback(() => {
-    if (touchStart !== null && touchCurrent !== null) {
-      const diff = touchCurrent - touchStart;
-      if (diff > 80) {
-        closeMenu();
-      }
+    // Only swipe right, and horizontal movement must be greater than vertical
+    if (diffX > 80 && diffX > diffY) {
+      closeMenu();
     }
-    setTouchStart(null);
-    setTouchCurrent(null);
-    setIsDragging(false);
-  }, [touchStart, touchCurrent, closeMenu]);
+  }, [closeMenu]);
 
   // Close on escape key
   useEffect(() => {
@@ -66,17 +55,12 @@ export function MobileMenu() {
     };
   }, [open, closeMenu]);
 
-  const dragOffset = isDragging && touchStart !== null && touchCurrent !== null
-    ? Math.max(0, touchCurrent - touchStart)
-    : 0;
-
   return (
     <div className="lg:hidden">
-      <Button
-        variant="ghost"
-        size="sm"
+      {/* Hamburger button */}
+      <button
         onClick={() => setOpen(!open)}
-        className="relative z-50 text-gray-300 hover:text-white hover:bg-gray-800 p-2"
+        className="relative z-50 flex h-11 w-11 items-center justify-center rounded-xl text-gray-300 transition-colors hover:bg-gray-800 hover:text-white active:bg-gray-700"
         aria-label={open ? "Close menu" : "Open menu"}
       >
         <span className="relative h-6 w-6">
@@ -95,12 +79,11 @@ export function MobileMenu() {
             <X className="h-6 w-6" />
           </span>
         </span>
-      </Button>
+      </button>
 
       {/* Overlay */}
       <div
-        ref={overlayRef}
-        className={`fixed inset-0 z-40 bg-black/60 backdrop-blur-sm transition-opacity duration-300 ${
+        className={`fixed inset-0 z-40 bg-black/70 backdrop-blur-sm transition-opacity duration-300 ${
           open ? "opacity-100" : "pointer-events-none opacity-0"
         }`}
         onClick={closeMenu}
@@ -109,21 +92,32 @@ export function MobileMenu() {
       {/* Menu panel */}
       <div
         ref={menuRef}
-        className={`fixed inset-y-0 right-0 z-50 w-72 bg-gradient-to-b from-gray-900 to-black shadow-2xl transition-transform duration-300 ease-out ${
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
+        className={`fixed inset-y-0 right-0 z-50 flex w-72 flex-col bg-gray-950 shadow-2xl transition-transform duration-300 ease-out ${
           open ? "translate-x-0" : "translate-x-full"
         }`}
-        style={{ transform: `translateX(${open ? dragOffset : '100'}%)` }}
-        onTouchStart={handleTouchStart}
-        onTouchMove={handleTouchMove}
-        onTouchEnd={handleTouchEnd}
+        style={{ willChange: "transform" }}
       >
-        {/* Swipe indicator */}
-        <div className="flex justify-center pt-4">
-          <div className="h-1 w-10 rounded-full bg-gray-600" />
+        {/* Header */}
+        <div className="flex items-center justify-between border-b border-gray-800 px-5 py-4">
+          <span className="text-sm font-bold uppercase tracking-wider text-emerald-400">Menu</span>
+          <button
+            onClick={closeMenu}
+            className="flex h-10 w-10 items-center justify-center rounded-xl text-gray-400 transition-colors hover:bg-gray-800 hover:text-white active:bg-gray-700"
+            aria-label="Close menu"
+          >
+            <X className="h-5 w-5" />
+          </button>
+        </div>
+
+        {/* Swipe hint */}
+        <div className="flex justify-center py-2">
+          <div className="h-1 w-10 rounded-full bg-gray-700" />
         </div>
 
         {/* Nav links */}
-        <nav className="mt-8 flex flex-col gap-1 px-4">
+        <nav className="flex-1 overflow-y-auto px-3 py-4">
           {NAV_LINKS.map((link, i) => {
             const Icon = link.icon;
             return (
@@ -137,7 +131,7 @@ export function MobileMenu() {
                     : "translate-x-8 opacity-0"
                 }`}
                 style={{
-                  transitionDelay: open ? `${i * 60}ms` : "0ms",
+                  transitionDelay: open ? `${i * 50}ms` : "0ms",
                 }}
               >
                 <Icon className="h-5 w-5 text-emerald-400" />
@@ -147,8 +141,8 @@ export function MobileMenu() {
           })}
         </nav>
 
-        {/* Bottom accent */}
-        <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-emerald-500 to-emerald-300" />
+        {/* Bottom gradient accent */}
+        <div className="h-1 bg-gradient-to-r from-emerald-500 to-emerald-300" />
       </div>
     </div>
   );
