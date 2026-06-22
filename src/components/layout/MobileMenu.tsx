@@ -60,25 +60,28 @@ export function MobileMenu() {
       {/* Overlay */}
       {open && (
         <div
-          className="fixed inset-0 z-40 bg-black/60"
+          className="fixed inset-0 z-40"
+          style={{ backgroundColor: "rgba(0,0,0,0.6)" }}
           onClick={() => setOpen(false)}
         />
       )}
 
       {/* Right side menu */}
       <div
-        className={`fixed top-0 right-0 z-50 h-full w-72 bg-black shadow-2xl transition-transform duration-300 ease-in-out ${
+        className={`fixed top-0 right-0 z-50 h-full w-72 shadow-2xl transition-transform duration-300 ease-in-out ${
           open ? "translate-x-0" : "translate-x-full"
         }`}
+        style={{ backgroundColor: "#1a1a1a" }}
       >
         {/* Header */}
-        <div className="flex items-center justify-between px-5 py-4 border-b border-gray-800">
-          <span className="text-sm font-bold uppercase tracking-wider text-emerald-400">
+        <div className="flex items-center justify-between px-5 py-4" style={{ borderBottom: "1px solid #333" }}>
+          <span className="text-sm font-bold uppercase tracking-wider" style={{ color: "#34d399" }}>
             Menu
           </span>
           <button
             onClick={() => setOpen(false)}
-            className="flex h-10 w-10 items-center justify-center rounded-xl text-gray-400 hover:bg-gray-800 hover:text-white"
+            className="flex h-10 w-10 items-center justify-center rounded-xl"
+            style={{ color: "#9ca3af" }}
             aria-label="Close menu"
           >
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
@@ -90,7 +93,7 @@ export function MobileMenu() {
 
         {/* Swipe handle */}
         <div className="flex justify-center py-2">
-          <div className="h-1 w-10 rounded-full bg-gray-600" />
+          <div className="h-1 w-10 rounded-full" style={{ backgroundColor: "#555" }} />
         </div>
 
         {/* Links */}
@@ -102,9 +105,10 @@ export function MobileMenu() {
                 key={link.href}
                 href={link.href}
                 onClick={() => setOpen(false)}
-                className="flex items-center gap-3 rounded-xl px-4 py-3.5 text-base font-medium text-white hover:bg-gray-800 active:bg-gray-700 transition-colors"
+                className="flex items-center gap-3 rounded-xl px-4 py-3.5 text-base font-medium transition-colors"
+                style={{ color: "#ffffff" }}
               >
-                <Icon className="h-5 w-5 text-emerald-400 shrink-0" />
+                <Icon className="h-5 w-5 shrink-0" style={{ color: "#34d399" }} />
                 <span>{link.label}</span>
               </Link>
             );
@@ -112,7 +116,7 @@ export function MobileMenu() {
         </nav>
 
         {/* Bottom accent */}
-        <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-emerald-500 to-emerald-300" />
+        <div className="absolute bottom-0 left-0 right-0 h-1" style={{ background: "linear-gradient(to right, #10b981, #6ee7b7)" }} />
       </div>
     </div>
   );
