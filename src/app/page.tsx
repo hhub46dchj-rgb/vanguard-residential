@@ -155,7 +155,7 @@ export default function HomePage() {
       </section>
 
       {/* Trust strip */}
-      <section className="border-t border-navy-100 bg-navy-50/50">
+      <section className="border-t border-white/10" style={{ backgroundColor: "rgba(255,255,255,0.03)" }}>
         <div className="mx-auto grid max-w-6xl gap-4 px-5 py-8 sm:gap-6 sm:grid-cols-3 sm:px-6 sm:py-12">
           {[
             { k: "Fast Closes", v: "Cash offers, flexible timelines" },
@@ -163,8 +163,8 @@ export default function HomePage() {
             { k: "Trusted Network", v: "Vetted buyers & partners" },
           ].map((item) => (
             <div key={item.k} className="text-center hover-lift sm:text-left">
-              <p className="text-base font-bold text-navy-900">{item.k}</p>
-              <p className="mt-1 text-sm text-slate-600">{item.v}</p>
+              <p className="text-base font-bold text-white">{item.k}</p>
+              <p className="mt-1 text-sm text-gray-400">{item.v}</p>
             </div>
           ))}
         </div>
