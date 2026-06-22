@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
 import { Home, Users, Handshake, Info, HelpCircle } from "lucide-react";
 
@@ -14,8 +14,8 @@ const NAV_LINKS = [
 
 export function MobileMenu() {
   const [open, setOpen] = useState(false);
+  const touchStartX = useRef(0);
 
-  // Close on escape key + lock body scroll
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === "Escape") setOpen(false);
@@ -30,52 +30,55 @@ export function MobileMenu() {
     };
   }, [open]);
 
+  const handleTouchStart = useCallback((e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  }, []);
+
+  const handleTouchEnd = useCallback((e: React.TouchEvent) => {
+    const touchEndX = e.changedTouches[0].clientX;
+    const diff = touchEndX - touchStartX.current;
+    if (diff > 60 && touchStartX.current < 40) {
+      setOpen(true);
+    }
+  }, []);
+
   return (
-    <>
-      {/* Hamburger button - always visible on mobile */}
+    <div onTouchEnd={handleTouchEnd} className="lg:hidden">
+      {/* Hamburger button */}
       <button
-        onClick={() => setOpen((v) => !v)}
-        className="lg:hidden flex h-11 w-11 items-center justify-center rounded-xl text-gray-300 hover:bg-gray-800 hover:text-white active:bg-gray-700 z-50 relative"
-        aria-label="Toggle menu"
+        onClick={() => setOpen(true)}
+        className="flex h-11 w-11 items-center justify-center rounded-xl text-gray-300 hover:bg-gray-800 hover:text-white active:bg-gray-700 relative z-50"
+        aria-label="Open menu"
       >
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-          {open ? (
-            <>
-              <line x1="18" y1="6" x2="6" y2="18" />
-              <line x1="6" y1="6" x2="18" y2="18" />
-            </>
-          ) : (
-            <>
-              <line x1="3" y1="6" x2="21" y2="6" />
-              <line x1="3" y1="12" x2="21" y2="12" />
-              <line x1="3" y1="18" x2="21" y2="18" />
-            </>
-          )}
+          <line x1="3" y1="6" x2="21" y2="6" />
+          <line x1="3" y1="12" x2="21" y2="12" />
+          <line x1="3" y1="18" x2="21" y2="18" />
         </svg>
       </button>
 
       {/* Overlay */}
       {open && (
         <div
-          className="fixed inset-0 z-40 bg-black/70"
+          className="fixed inset-0 z-40 bg-black/60"
           onClick={() => setOpen(false)}
         />
       )}
 
-      {/* Menu */}
+      {/* Left side menu */}
       <div
-        className={`fixed top-0 right-0 z-50 h-full w-72 bg-gray-950 shadow-2xl transition-transform duration-300 ease-in-out ${
-          open ? "translate-x-0" : "translate-x-full"
+        className={`fixed top-0 left-0 z-50 h-full w-72 bg-gray-800 shadow-2xl transition-transform duration-300 ease-in-out ${
+          open ? "translate-x-0" : "-translate-x-full"
         }`}
       >
-        {/* Close button */}
-        <div className="flex items-center justify-between px-5 py-4 border-b border-gray-800">
+        {/* Header */}
+        <div className="flex items-center justify-between px-5 py-4 border-b border-gray-700">
           <span className="text-sm font-bold uppercase tracking-wider text-emerald-400">
             Menu
           </span>
           <button
             onClick={() => setOpen(false)}
-            className="flex h-10 w-10 items-center justify-center rounded-xl text-gray-400 hover:bg-gray-800 hover:text-white"
+            className="flex h-10 w-10 items-center justify-center rounded-xl text-gray-400 hover:bg-gray-700 hover:text-white"
             aria-label="Close menu"
           >
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
@@ -87,7 +90,7 @@ export function MobileMenu() {
 
         {/* Swipe handle */}
         <div className="flex justify-center py-2">
-          <div className="h-1 w-10 rounded-full bg-gray-700" />
+          <div className="h-1 w-10 rounded-full bg-gray-600" />
         </div>
 
         {/* Links */}
@@ -99,7 +102,7 @@ export function MobileMenu() {
                 key={link.href}
                 href={link.href}
                 onClick={() => setOpen(false)}
-                className="flex items-center gap-3 rounded-xl px-4 py-3.5 text-base font-medium text-gray-300 hover:bg-gray-800 hover:text-white active:bg-gray-700 transition-colors"
+                className="flex items-center gap-3 rounded-xl px-4 py-3.5 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white active:bg-gray-600 transition-colors"
               >
                 <Icon className="h-5 w-5 text-emerald-400 shrink-0" />
                 <span>{link.label}</span>
@@ -111,6 +114,6 @@ export function MobileMenu() {
         {/* Bottom accent */}
         <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-emerald-500 to-emerald-300" />
       </div>
-    </>
+    </div>
   );
 }
