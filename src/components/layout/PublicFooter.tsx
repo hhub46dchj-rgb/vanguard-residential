@@ -34,6 +34,16 @@ export function PublicFooter() {
                   Joint Ventures
                 </Link>
               </li>
+              <li>
+                <Link href="/about" className="transition-colors hover:text-emerald-300">
+                  About Us
+                </Link>
+              </li>
+              <li>
+                <Link href="/faq" className="transition-colors hover:text-emerald-300">
+                  FAQ
+                </Link>
+              </li>
             </ul>
           </div>
 
