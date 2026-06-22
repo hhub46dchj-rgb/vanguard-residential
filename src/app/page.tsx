@@ -102,7 +102,7 @@ export default function HomePage() {
 
       {/* Three portals */}
       <section className="mx-auto max-w-6xl px-5 pb-12 pt-4 sm:px-6 sm:pb-20 sm:pt-8">
-        <div className="grid gap-4 sm:gap-6 md:grid-cols-3 stagger-children">
+        <div className="grid gap-4 sm:gap-6 md:grid-cols-3 md:auto-rows-fr stagger-children">
           <AnimateOnScroll delay={0}>
             <PortalCard
               href="/sellers"
@@ -139,7 +139,7 @@ export default function HomePage() {
             <PortalCard
               href="/partners"
               icon={Handshake}
-              audience="Co-Wholesalers & Companies"
+              audience="JV Partners"
               title="Partners"
               description="Joint-venture with us — whether you need help sourcing supply or moving a contract through our buyer network."
               bullets={[
