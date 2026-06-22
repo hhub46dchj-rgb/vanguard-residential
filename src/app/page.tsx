@@ -20,18 +20,18 @@ export default function HomePage() {
         {/* Dark overlay for readability */}
         <div className="absolute inset-0 bg-black/60" aria-hidden />
 
-        <div className="relative z-10 mx-auto max-w-6xl px-4 py-24 sm:px-6 sm:py-36 lg:py-44">
+        <div className="relative z-10 mx-auto max-w-6xl px-5 py-16 sm:px-6 sm:py-28 lg:py-40">
           <div className="max-w-3xl">
-            <h1 className="mt-10 text-6xl font-bold leading-[1.1] tracking-tight sm:text-7xl lg:text-8xl">
+            <h1 className="mt-6 text-3xl font-bold leading-[1.1] tracking-tight sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl">
               Transforming Property Potential into{" "}
               <span className="bg-gradient-to-r from-emerald-400 to-emerald-300 bg-clip-text text-transparent">Shared Success.</span>
             </h1>
-            <p className="mt-10 max-w-2xl text-xl leading-relaxed text-gray-300">
+            <p className="mt-6 max-w-2xl text-base leading-relaxed text-gray-300 sm:text-lg md:mt-8 md:text-xl lg:mt-10">
               Vanguard Residential Acquisitions connects motivated sellers, cash-buyer
               investors, and joint-venture partners — turning distressed and
               undervalued property into clean, fast, profitable transactions.
             </p>
-            <p className="mt-12 text-lg text-gray-400">
+            <p className="mt-6 text-sm text-gray-400 sm:text-base md:mt-8 md:text-lg lg:mt-10">
               Choose the portal that fits you below to get started.
             </p>
           </div>
@@ -39,12 +39,12 @@ export default function HomePage() {
       </section>
 
       {/* Three Images Section */}
-      <section className="relative bg-black py-20 sm:py-32">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <section className="relative bg-black py-12 sm:py-20 lg:py-32">
+        <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 gap-6 sm:gap-8 lg:grid-cols-3">
             {/* Seller Image */}
             <div className="relative group">
-              <div className="relative h-80 w-full overflow-hidden rounded-3xl shadow-2xl">
+              <div className="relative h-56 w-full overflow-hidden rounded-2xl sm:h-72 sm:rounded-3xl lg:h-80">
                 <Image
                   src="/photos/seller.jpg"
                   alt="Seller property"
@@ -54,15 +54,15 @@ export default function HomePage() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
               </div>
-              <div className="mt-6">
-                <h3 className="text-2xl font-bold text-white mb-2">Sellers</h3>
-                <p className="text-gray-300 text-lg">Homeowners looking to sell their properties fast and as-is</p>
+              <div className="mt-4 sm:mt-6">
+                <h3 className="text-xl font-bold text-white mb-1 sm:text-2xl sm:mb-2">Sellers</h3>
+                <p className="text-sm text-gray-300 sm:text-lg">Homeowners looking to sell their properties fast and as-is</p>
               </div>
             </div>
 
             {/* Investors Image */}
             <div className="relative group">
-              <div className="relative h-80 w-full overflow-hidden rounded-3xl shadow-2xl">
+              <div className="relative h-56 w-full overflow-hidden rounded-2xl sm:h-72 sm:rounded-3xl lg:h-80">
                 <Image
                   src="/photos/investors.jpg"
                   alt="Investor portfolio"
@@ -72,15 +72,15 @@ export default function HomePage() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
               </div>
-              <div className="mt-6">
-                <h3 className="text-2xl font-bold text-white mb-2">Investors</h3>
-                <p className="text-gray-300 text-lg">Cash buyers and institutional investors seeking profitable opportunities</p>
+              <div className="mt-4 sm:mt-6">
+                <h3 className="text-xl font-bold text-white mb-1 sm:text-2xl sm:mb-2">Investors</h3>
+                <p className="text-sm text-gray-300 sm:text-lg">Cash buyers and institutional investors seeking profitable opportunities</p>
               </div>
             </div>
 
             {/* Partners Image */}
             <div className="relative group">
-              <div className="relative h-80 w-full overflow-hidden rounded-3xl shadow-2xl">
+              <div className="relative h-56 w-full overflow-hidden rounded-2xl sm:h-72 sm:rounded-3xl lg:h-80">
                 <Image
                   src="/photos/JV.jpg"
                   alt="Joint venture partners"
@@ -90,9 +90,9 @@ export default function HomePage() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
               </div>
-              <div className="mt-6">
-                <h3 className="text-2xl font-bold text-white mb-2">Partners</h3>
-                <p className="text-gray-300 text-lg">Co-wholesalers and companies seeking joint venture opportunities</p>
+              <div className="mt-4 sm:mt-6">
+                <h3 className="text-xl font-bold text-white mb-1 sm:text-2xl sm:mb-2">Partners</h3>
+                <p className="text-sm text-gray-300 sm:text-lg">Co-wholesalers and companies seeking joint venture opportunities</p>
               </div>
             </div>
           </div>
@@ -100,8 +100,8 @@ export default function HomePage() {
       </section>
 
       {/* Three portals */}
-      <section className="mx-auto -mt-10 max-w-6xl px-4 pb-20 sm:px-6">
-        <div className="grid gap-6 md:grid-cols-3">
+      <section className="mx-auto -mt-6 max-w-6xl px-5 pb-12 sm:-mt-10 sm:px-6 sm:pb-20">
+        <div className="grid gap-4 sm:gap-6 md:grid-cols-3">
           <PortalCard
             href="/sellers"
             icon={Home}
@@ -149,7 +149,7 @@ export default function HomePage() {
 
       {/* Trust strip */}
       <section className="border-t border-navy-100 bg-navy-50/50">
-        <div className="mx-auto grid max-w-6xl gap-6 px-4 py-12 sm:grid-cols-3 sm:px-6">
+        <div className="mx-auto grid max-w-6xl gap-4 px-5 py-8 sm:gap-6 sm:grid-cols-3 sm:px-6 sm:py-12">
           {[
             { k: "Fast Closes", v: "Cash offers, flexible timelines" },
             { k: "As-Is Deals", v: "No repairs, no hidden fees" },

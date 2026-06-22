@@ -32,13 +32,14 @@ export function PortalCard({
     <Link
       href={href}
       className={cn(
-        "group relative flex flex-col overflow-hidden rounded-3xl border border-gray-200 bg-white p-8 sm:p-10",
+        "group relative flex flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white p-5 sm:rounded-3xl sm:p-8 md:p-10",
         "shadow-card-xl transition-all duration-500",
-        "hover:-translate-y-3 hover:border-emerald-300 hover:shadow-2xl hover:bg-gradient-to-br hover:from-white hover:to-emerald-50/50",
+        "hover:-translate-y-1 sm:hover:-translate-y-3 hover:border-emerald-300 hover:shadow-2xl hover:bg-gradient-to-br hover:from-white hover:to-emerald-50/50",
+        "active:scale-[0.98] sm:active:scale-100",
         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2",
       )}
     >
-      <div className="relative mb-8 h-48 w-48 overflow-hidden rounded-2xl bg-white p-3 shadow-xl ring-1 ring-gray-200">
+      <div className="relative mb-5 h-28 w-28 overflow-hidden rounded-xl bg-white p-2 shadow-xl ring-1 ring-gray-200 sm:mb-8 sm:h-48 sm:w-48 sm:rounded-2xl sm:p-3">
         {image ? (
           <Image
             src={image}
@@ -55,27 +56,27 @@ export function PortalCard({
               iconClassName,
             )}
           >
-            <Icon className="h-12 w-12" />
+            <Icon className="h-8 w-8 sm:h-12 sm:w-12" />
           </span>
         )}
       </div>
 
-      <p className="mt-2 text-sm font-semibold uppercase tracking-[0.16em] text-emerald-600">
+      <p className="mt-2 text-xs font-semibold uppercase tracking-[0.16em] text-emerald-600 sm:text-sm">
         {audience}
       </p>
-      <h3 className="mt-3 text-2xl font-bold text-navy-900">{title}</h3>
-      <p className="mt-3 text-base leading-relaxed text-slate-700">{description}</p>
+      <h3 className="mt-2 text-xl font-bold text-navy-900 sm:mt-3 sm:text-2xl">{title}</h3>
+      <p className="mt-2 text-sm leading-relaxed text-slate-700 sm:mt-3 sm:text-base">{description}</p>
 
-      <ul className="mt-5 space-y-3">
+      <ul className="mt-3 space-y-2 sm:mt-5 sm:space-y-3">
         {bullets.map((b) => (
-          <li key={b} className="flex items-start gap-3 text-sm text-slate-800">
-            <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-emerald-500" />
+          <li key={b} className="flex items-start gap-2 text-xs text-slate-800 sm:gap-3 sm:text-sm">
+            <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-500 sm:mt-1.5 sm:h-2 sm:w-2" />
             {b}
           </li>
         ))}
       </ul>
 
-      <span className="mt-8 inline-flex items-center gap-2 text-base font-semibold text-navy-800 transition-all duration-300 group-hover:text-emerald-600">
+      <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-navy-800 transition-all duration-300 group-hover:text-emerald-600 sm:mt-8 sm:text-base">
         {cta}
         <ArrowRight className="h-5 w-5 transition-all duration-300 group-hover:translate-x-2 group-hover:scale-110" />
       </span>

@@ -20,7 +20,7 @@ export function FormShell({
 }) {
   return (
     <>
-      <main className="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-14">
+      <main className="mx-auto max-w-6xl px-5 py-6 sm:px-6 sm:py-10 lg:py-14">
         <Link
           href="/"
           className="mb-6 inline-flex items-center gap-1.5 text-sm font-medium text-slate-600 transition-colors hover:text-navy-800"
@@ -62,7 +62,7 @@ export function FormShell({
           </aside>
 
           {/* Form card */}
-          <div className="rounded-2xl border border-navy-100 bg-white p-6 shadow-card sm:p-8">
+          <div className="rounded-xl border border-navy-100 bg-white p-4 shadow-card sm:rounded-2xl sm:p-6 md:p-8">
             {children}
           </div>
         </div>

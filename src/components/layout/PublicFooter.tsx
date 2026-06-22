@@ -5,8 +5,8 @@ export function PublicFooter() {
   const year = new Date().getFullYear();
   return (
     <footer className="mt-auto border-t border-navy-100 bg-navy-900 text-navy-200">
-      <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
-        <div className="grid gap-8 md:grid-cols-3">
+      <div className="mx-auto max-w-6xl px-5 py-8 sm:px-6 sm:py-12">
+        <div className="grid gap-6 sm:gap-8 md:grid-cols-3">
           <div className="space-y-3">
             <Logo variant="light" href={null} />
             <p className="max-w-xs text-sm text-navy-300">
@@ -61,7 +61,7 @@ export function PublicFooter() {
 
         </div>
 
-        <div className="mt-10 border-t border-navy-800 pt-6 text-xs text-navy-400">
+        <div className="mt-8 border-t border-navy-800 pt-6 text-xs text-navy-400 sm:mt-10">
           © {year} Vanguard Residential Acquisitions. All rights reserved.
         </div>
       </div>
