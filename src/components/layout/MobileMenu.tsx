@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import { Home, Users, Handshake, Info, HelpCircle } from "lucide-react";
 
@@ -14,7 +14,6 @@ const NAV_LINKS = [
 
 export function MobileMenu() {
   const [open, setOpen] = useState(false);
-  const touchStartX = useRef(0);
 
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
@@ -30,20 +29,10 @@ export function MobileMenu() {
     };
   }, [open]);
 
-  const handleTouchStart = useCallback((e: React.TouchEvent) => {
-    touchStartX.current = e.touches[0].clientX;
-  }, []);
 
-  const handleTouchEnd = useCallback((e: React.TouchEvent) => {
-    const touchEndX = e.changedTouches[0].clientX;
-    const diff = touchEndX - touchStartX.current;
-    if (diff > 60 && touchStartX.current < 40) {
-      setOpen(true);
-    }
-  }, []);
 
   return (
-    <div onTouchEnd={handleTouchEnd} className="lg:hidden">
+    <div className="lg:hidden">
       {/* Hamburger button */}
       <button
         onClick={() => setOpen(true)}
