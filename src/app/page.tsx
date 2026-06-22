@@ -101,7 +101,7 @@ export default function HomePage() {
       </section>
 
       {/* Three portals */}
-      <section className="mx-auto -mt-6 max-w-6xl px-5 pb-12 sm:-mt-10 sm:px-6 sm:pb-20">
+      <section className="mx-auto max-w-6xl px-5 pb-12 pt-4 sm:px-6 sm:pb-20 sm:pt-8">
         <div className="grid gap-4 sm:gap-6 md:grid-cols-3 stagger-children">
           <AnimateOnScroll delay={0}>
             <PortalCard
