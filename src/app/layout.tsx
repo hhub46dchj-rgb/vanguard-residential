@@ -40,8 +40,8 @@ export const metadata: Metadata = {
     images: [
       {
         url: "https://vanguardresidentialacquisitions.com/og-image.jpg",
-        width: 839,
-        height: 846,
+        width: 1200,
+        height: 630,
         alt: "Vanguard Residential Acquisitions",
       },
     ],
