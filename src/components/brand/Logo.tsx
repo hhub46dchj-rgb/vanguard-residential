@@ -66,7 +66,7 @@ export function Logo({
     <span className={cn("flex items-center gap-3 sm:gap-5", className)}>
       <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-xl shadow-xl sm:h-20 sm:w-20 sm:rounded-2xl">
         <Image
-          src="/photos/logo.jpg"
+          src="/newlogo.png"
           alt="Vanguard Residential Acquisitions logo"
           fill
           className="object-cover transition-all duration-500 hover:scale-105 hover:shadow-2xl"

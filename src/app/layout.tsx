@@ -67,7 +67,21 @@ export default function RootLayout({
       className={`${inter.variable} h-full antialiased`}
       suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col bg-white text-navy-900 dark:bg-black dark:text-gray-100">
+      <body className="relative min-h-screen overflow-x-hidden bg-black text-navy-900 dark:text-gray-100">
+        {/* Background video — site-wide, fixed behind all content */}
+        <div className="fixed inset-0 -z-10" aria-hidden>
+          <video
+            className="h-full w-full object-cover"
+            src="/photos/background.mp4"
+            autoPlay
+            muted
+            loop
+            playsInline
+          />
+          {/* Dark overlay for readability */}
+          <div className="absolute inset-0 bg-black/70" />
+        </div>
+
         <PublicHeader />
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
           {children}

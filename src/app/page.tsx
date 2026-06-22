@@ -8,19 +8,7 @@ export default function HomePage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative overflow-hidden bg-black text-white">
-        {/* Video background */}
-        <video
-          className="absolute inset-0 w-full h-full object-cover pointer-events-none"
-          src="/photos/background.mp4"
-          autoPlay
-          muted
-          loop
-          playsInline
-        />
-        {/* Dark overlay for readability */}
-        <div className="absolute inset-0 bg-black/60" aria-hidden />
-
+      <section className="relative overflow-hidden text-white">
         <div className="relative z-10 mx-auto max-w-6xl px-5 py-16 sm:px-6 sm:py-28 lg:py-40">
           <div className="max-w-3xl">
             <AnimateOnScroll>
