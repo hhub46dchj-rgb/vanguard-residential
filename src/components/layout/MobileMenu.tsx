@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
 import { Home, Users, Handshake, Info, HelpCircle } from "lucide-react";
 
@@ -14,6 +14,8 @@ const NAV_LINKS = [
 
 export function MobileMenu() {
   const [open, setOpen] = useState(false);
+  const touchStartX = useRef(0);
+  const menuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
@@ -29,7 +31,17 @@ export function MobileMenu() {
     };
   }, [open]);
 
+  const handleTouchStart = useCallback((e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  }, []);
 
+  const handleTouchEnd = useCallback((e: React.TouchEvent) => {
+    const touchEndX = e.changedTouches[0].clientX;
+    const diff = touchStartX.current - touchEndX;
+    if (diff > 50) {
+      setOpen(false);
+    }
+  }, []);
 
   return (
     <div className="lg:hidden">
@@ -46,17 +58,20 @@ export function MobileMenu() {
         </svg>
       </button>
 
-      {/* Overlay */}
-      {open && (
-        <div
-          className="fixed inset-0 z-40"
-          style={{ backgroundColor: "rgba(0,0,0,0.6)" }}
-          onClick={() => setOpen(false)}
-        />
-      )}
+      {/* Overlay with blur */}
+      <div
+        className={`fixed inset-0 z-40 transition-all duration-300 ${
+          open ? "opacity-100" : "pointer-events-none opacity-0"
+        }`}
+        style={{ backgroundColor: "rgba(0,0,0,0.5)", backdropFilter: "blur(8px)", WebkitBackdropFilter: "blur(8px)" }}
+        onClick={() => setOpen(false)}
+      />
 
       {/* Right side menu */}
       <div
+        ref={menuRef}
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
         className={`fixed top-0 right-0 z-50 h-full w-72 shadow-2xl transition-transform duration-300 ease-in-out ${
           open ? "translate-x-0" : "translate-x-full"
         }`}
@@ -94,7 +109,7 @@ export function MobileMenu() {
                 key={link.href}
                 href={link.href}
                 onClick={() => setOpen(false)}
-                className="flex items-center gap-3 rounded-xl px-4 py-3.5 text-base font-medium transition-colors"
+                className="flex items-center gap-3 rounded-xl px-4 py-3.5 text-base font-medium transition-colors hover:opacity-80"
                 style={{ color: "#ffffff" }}
               >
                 <Icon className="h-5 w-5 shrink-0" style={{ color: "#34d399" }} />
