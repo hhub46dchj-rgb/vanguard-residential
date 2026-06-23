@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Home, Wallet, Handshake, Send, Clock, Shield, FileCheck, Phone, ArrowRight, Star } from "lucide-react";
+import { Home, Wallet, Handshake, Send, Clock, FileCheck, ArrowRight, Mail } from "lucide-react";
 import { PublicFooter } from "@/components/layout/PublicFooter";
 import { PortalCard } from "@/components/home/PortalCard";
 import { AnimateOnScroll } from "@/components/ui/AnimateOnScroll";
@@ -21,40 +21,6 @@ const STEPS = [
     title: "Close on Your Timeline",
     desc: "Accept your offer and close in as little as 7 days — or on your schedule.",
   },
-];
-
-const STATS = [
-  { num: "500+", label: "Properties Acquired" },
-  { num: "$50M+", label: "In Deals Closed" },
-  { num: "48h", label: "Average Offer Time" },
-  { num: "100%", label: "Client Satisfaction" },
-];
-
-const TESTIMONIALS = [
-  {
-    name: "Michael R.",
-    role: "Homeowner, Tampa",
-    text: "They gave me a fair cash offer in 24 hours and closed in 10 days. No repairs, no realtor fees. Highly recommend.",
-    stars: 5,
-  },
-  {
-    name: "Sarah L.",
-    role: "Real Estate Investor",
-    text: "Vanguard consistently brings off-market deals that match my criteria. Professional, fast, and reliable.",
-    stars: 5,
-  },
-  {
-    name: "David K.",
-    role: "Co-Wholesaler",
-    text: "Our JV partnership has been incredibly profitable. They have the buyer network and the speed to move contracts.",
-    stars: 5,
-  },
-];
-
-const TRUST_ITEMS = [
-  { icon: Clock, title: "Fast Closes", desc: "Cash offers, flexible timelines" },
-  { icon: Shield, title: "As-Is Deals", desc: "No repairs, no hidden fees" },
-  { icon: Handshake, title: "Trusted Network", desc: "Vetted buyers & partners" },
 ];
 
 export default function HomePage() {
@@ -95,18 +61,6 @@ export default function HomePage() {
               </div>
             </AnimateOnScroll>
           </div>
-        </div>
-      </section>
-
-      {/* Stats Strip */}
-      <section className="relative border-y border-white/10 bg-emerald-600/10">
-        <div className="mx-auto grid max-w-6xl grid-cols-2 gap-4 px-5 py-8 sm:grid-cols-4 sm:px-6 sm:py-12">
-          {STATS.map((s) => (
-            <AnimateOnScroll key={s.label} className="text-center">
-              <p className="text-2xl font-bold text-emerald-400 sm:text-3xl lg:text-4xl">{s.num}</p>
-              <p className="mt-1 text-xs text-gray-400 sm:text-sm">{s.label}</p>
-            </AnimateOnScroll>
-          ))}
         </div>
       </section>
 
@@ -202,54 +156,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Trust Strip */}
-      <section className="border-t border-white/10" style={{ backgroundColor: "rgba(255,255,255,0.03)" }}>
-        <div className="mx-auto grid max-w-6xl gap-6 px-5 py-10 sm:grid-cols-3 sm:px-6 sm:py-14">
-          {TRUST_ITEMS.map((item) => {
-            const Icon = item.icon;
-            return (
-              <div key={item.title} className="flex items-center gap-4 text-center hover-lift sm:text-left">
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-emerald-500/10">
-                  <Icon className="h-6 w-6 text-emerald-400" />
-                </div>
-                <div>
-                  <p className="text-base font-bold text-white">{item.title}</p>
-                  <p className="mt-0.5 text-sm text-gray-400">{item.desc}</p>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </section>
-
-      {/* Testimonials */}
-      <section className="py-12 sm:py-20 lg:py-28">
-        <div className="mx-auto max-w-6xl px-5 sm:px-6">
-          <AnimateOnScroll>
-            <h2 className="mb-4 text-center text-2xl font-bold text-white sm:text-3xl">What Our Clients Say</h2>
-            <p className="mb-12 text-center text-gray-400 sm:text-lg">Trusted by sellers, investors, and partners across Florida</p>
-          </AnimateOnScroll>
-          <div className="grid gap-6 sm:gap-8 md:grid-cols-3 stagger-children">
-            {TESTIMONIALS.map((t, i) => (
-              <AnimateOnScroll key={t.name} delay={i * 150}>
-                <div className="rounded-2xl border border-white/10 p-6 transition-all hover:border-emerald-400/30 sm:p-8" style={{ backgroundColor: "rgba(255,255,255,0.03)" }}>
-                  <div className="mb-4 flex gap-1">
-                    {Array.from({ length: t.stars }).map((_, j) => (
-                      <Star key={j} className="h-4 w-4 fill-emerald-400 text-emerald-400" />
-                    ))}
-                  </div>
-                  <p className="mb-6 text-sm leading-relaxed text-gray-300 sm:text-base">&ldquo;{t.text}&rdquo;</p>
-                  <div>
-                    <p className="text-sm font-bold text-white">{t.name}</p>
-                    <p className="text-xs text-gray-500">{t.role}</p>
-                  </div>
-                </div>
-              </AnimateOnScroll>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* CTA Section */}
       <section className="border-t border-white/10 py-12 sm:py-20" style={{ backgroundColor: "rgba(16,185,129,0.05)" }}>
         <div className="mx-auto max-w-3xl px-5 text-center sm:px-6">
@@ -260,8 +166,8 @@ export default function HomePage() {
               <Link href="/sellers" className="pulse-glow inline-flex items-center gap-2 rounded-xl bg-emerald-500 px-6 py-3.5 text-sm font-bold text-white transition-all hover:bg-emerald-400 hover:shadow-lg hover:shadow-emerald-500/25 sm:text-base">
                 Get a Cash Offer <ArrowRight className="h-4 w-4 sm:h-5 sm:w-5" />
               </Link>
-              <a href="tel:+12399996818" className="inline-flex items-center gap-2 rounded-xl border border-white/20 px-6 py-3.5 text-sm font-bold text-white transition-all hover:bg-white/10 sm:text-base">
-                <Phone className="h-4 w-4 sm:h-5 sm:w-5" /> (239) 999-6818
+              <a href="mailto:info@vanguardresidentialacquisitions.com" className="inline-flex items-center gap-2 rounded-xl border border-white/20 px-6 py-3.5 text-sm font-bold text-white transition-all hover:bg-white/10 sm:text-base">
+                <Mail className="h-4 w-4 sm:h-5 sm:w-5" /> info@vanguardresidentialacquisitions.com
               </a>
             </div>
           </AnimateOnScroll>
