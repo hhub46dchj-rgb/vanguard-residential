@@ -4,7 +4,6 @@ import { Toaster } from "sonner";
 import { ThemeProvider } from "next-themes";
 import "./globals.css";
 import { PublicHeader } from "@/components/layout/PublicHeader";
-import { FloatingCTA } from "@/components/ui/FloatingCTA";
 import { CookieConsent } from "@/components/ui/CookieConsent";
 
 const inter = Inter({
@@ -97,7 +96,7 @@ export default function RootLayout({
             richColors
           />
         </ThemeProvider>
-        <FloatingCTA />
+
         <CookieConsent />
       </body>
     </html>
