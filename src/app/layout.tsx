@@ -4,6 +4,8 @@ import { Toaster } from "sonner";
 import { ThemeProvider } from "next-themes";
 import "./globals.css";
 import { PublicHeader } from "@/components/layout/PublicHeader";
+import { FloatingCTA } from "@/components/ui/FloatingCTA";
+import { CookieConsent } from "@/components/ui/CookieConsent";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -70,17 +72,15 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className="relative min-h-screen overflow-x-hidden bg-black text-navy-900 dark:text-gray-100">
-        {/* Background video — site-wide, fixed behind all content */}
         <div className="fixed inset-0 -z-10" aria-hidden>
           <video
             className="h-full w-full object-cover"
-            src="/photos/background.mp4"
+            src="/backvideo.mp4"
             autoPlay
             muted
             loop
             playsInline
           />
-          {/* Dark overlay for readability */}
           <div className="absolute inset-0 bg-black/70" />
         </div>
 
@@ -97,6 +97,8 @@ export default function RootLayout({
             richColors
           />
         </ThemeProvider>
+        <FloatingCTA />
+        <CookieConsent />
       </body>
     </html>
   );
