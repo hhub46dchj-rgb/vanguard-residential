@@ -1,27 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Home, Wallet, Handshake, Send, Clock, FileCheck, ArrowRight, Mail } from "lucide-react";
+import { Home, Wallet, Handshake, ArrowRight, Mail } from "lucide-react";
 import { PublicFooter } from "@/components/layout/PublicFooter";
 import { PortalCard } from "@/components/home/PortalCard";
 import { AnimateOnScroll } from "@/components/ui/AnimateOnScroll";
 
-const STEPS = [
-  {
-    icon: Send,
-    title: "Submit Your Property",
-    desc: "Tell us about your property — no repairs, no photos needed. Takes 2 minutes.",
-  },
-  {
-    icon: FileCheck,
-    title: "We Evaluate",
-    desc: "Our team analyzes the property and market data to make a fair, competitive cash offer.",
-  },
-  {
-    icon: Clock,
-    title: "Close on Your Timeline",
-    desc: "Accept your offer and close in as little as 7 days — or on your schedule.",
-  },
-];
 
 export default function HomePage() {
   return (
@@ -107,33 +90,6 @@ export default function HomePage() {
                 </div>
               </div>
             </AnimateOnScroll>
-          </div>
-        </div>
-      </section>
-
-      {/* How It Works */}
-      <section className="py-12 sm:py-20 lg:py-28" style={{ backgroundColor: "rgba(255,255,255,0.02)" }}>
-        <div className="mx-auto max-w-6xl px-5 sm:px-6">
-          <AnimateOnScroll>
-            <h2 className="mb-4 text-center text-2xl font-bold text-white sm:text-3xl">How It Works</h2>
-            <p className="mb-12 text-center text-gray-400 sm:text-lg">Three simple steps to close your deal</p>
-          </AnimateOnScroll>
-          <div className="grid gap-6 sm:gap-8 md:grid-cols-3 stagger-children">
-            {STEPS.map((step, i) => {
-              const Icon = step.icon;
-              return (
-                <AnimateOnScroll key={step.title} delay={i * 150}>
-                  <div className="relative rounded-2xl border border-white/10 p-6 text-center transition-all hover:border-emerald-400/50 hover:bg-white/5 sm:p-8" style={{ backgroundColor: "rgba(255,255,255,0.03)" }}>
-                    <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-emerald-500/10 sm:mb-6 sm:h-16 sm:w-16">
-                      <Icon className="h-7 w-7 text-emerald-400 sm:h-8 sm:w-8" />
-                    </div>
-                    <div className="mb-2 text-xs font-bold uppercase tracking-widest text-emerald-500">Step {i + 1}</div>
-                    <h3 className="mb-2 text-lg font-bold text-white sm:text-xl">{step.title}</h3>
-                    <p className="text-sm leading-relaxed text-gray-400 sm:text-base">{step.desc}</p>
-                  </div>
-                </AnimateOnScroll>
-              );
-            })}
           </div>
         </div>
       </section>
