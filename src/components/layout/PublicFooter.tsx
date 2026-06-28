@@ -45,6 +45,7 @@ export function PublicFooter() {
             <ul className="space-y-2 text-sm">
               <li><a href="mailto:info@vanguardresidentialacquisitions.com" className="transition-colors hover:text-emerald-300">info@vanguardresidentialacquisitions.com</a></li>
               <li><a href="tel:+12399996818" className="transition-colors hover:text-emerald-300">(239) 999-6818</a></li>
+              <li><a href="tel:+12396663100" className="transition-colors hover:text-emerald-300">(239) 666-3100</a></li>
               <li className="text-gray-500">7901 4th St N, STE 300<br />St. Petersburg, FL 33702</li>
             </ul>
           </div>
